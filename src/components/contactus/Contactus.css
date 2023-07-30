@@ -1,0 +1,56 @@
+.container-contactus {
+  position: relative;
+  width: 100%;
+  min-height: 50vh;
+  padding: 2rem;
+  background-color: rgb(129, 207, 218);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-contactus {
+  width: 100%;
+  max-width: 820px;
+  height: 200px;
+  background-color: rgb(4, 153, 153);
+  border-radius: 10px;
+  box-shadow: 0 0 20px 1px black;
+  z-index: 1000;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.contactus-info {
+  background-color: aliceblue;
+}
+.contactus-about {
+  background-color: rgb(4, 153, 153);
+  width: 28px;
+}
+.contact-title {
+  color: rgb(200, 49, 3);
+  font-weight: 500;
+  font-size: 2.2rem;
+  line-height: 1;
+  margin-bottom: 0.7rem;
+  padding-bottom: 5px;
+}
+
+.contactus-info {
+  padding: 2.3rem 2.2rem;
+  position: relative;
+}
+
+.about-bank {
+  border-radius: 4px;
+  width: 410px;
+  height: 500px;
+  font-size: medium;
+  padding-top: 30px;
+  text-align: center;
+  color: whitesmoke;
+}
+.contact-number{
+  font-size: 1.5rem;
+}
