@@ -9,7 +9,7 @@ export function validateUser(emailId, password) {
         // return "Credentials match";
         return {
           status: "AUTHENTICATION_SUCCESS",
-          userType: fetchedUser.user_type,
+          userType: fetchedUser.userType,
         };
       } else {
         // return "Credentials do not match";
