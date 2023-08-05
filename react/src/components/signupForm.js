@@ -136,26 +136,26 @@ function SignupForm() {
       }
       checkUserExists(email)
         .then((result) => {
-          if (result === 1) {
+         if (result === true) {
             setValidationResult("Email already exists");
-          } else if (result === 2) {
+          } else if (result === false) {
             setValidationResult("Error occurred, please retry");
           } else {
             const age = calculateAge(dob);
             const data = {
-              email: email,
+             email: email,
               password: password,
-              first_name: first_name,
-              last_name: last_name,
+              firstName: first_name,
+              lastName: last_name,
               dob: dob,
               address: address,
               city: city,
               state: state,
               country: country,
-              postal_code: postal_code,
+              postalCode: postal_code,
               age: age,
-              contact_num: contact_num,
-              is_active: true,
+              contactNum: contact_num,
+              isActive: true,
             };
             SaveUser(data).then((resp) => {
               if (resp === 1) {
