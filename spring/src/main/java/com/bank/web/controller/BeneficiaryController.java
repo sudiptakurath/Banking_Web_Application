@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/bank/beneficiaries")
+@RequestMapping("/bank-api/beneficiaries")
 @CrossOrigin(origins = "http://localhost:3000")
 
 public class BeneficiaryController {
@@ -24,27 +24,32 @@ public class BeneficiaryController {
             return ResponseEntity.ok("Beneficiary added successfully!");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while adding the beneficiary.");
         }
     }
 
     @GetMapping("/checkBeneficiary/{accountId}/{accountNumber}")
     public ResponseEntity<Boolean> checkBeneficiaryExists(@PathVariable Integer accountId, @PathVariable Long accountNumber) {
-        boolean beneficiaryExists = beneficiaryService.checkBeneficiaryExists(accountId, accountNumber);
-        if (beneficiaryExists) {
-            return ResponseEntity.ok(true);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
+        try {
+            boolean beneficiaryExists = beneficiaryService.checkBeneficiaryExists(accountId, accountNumber);
+            return ResponseEntity.ok(beneficiaryExists);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
         }
     }
 
     @GetMapping("/getBeneficiary/{userId}")
     public ResponseEntity<List<Beneficiary>> getAllBeneficiariesForUser(@PathVariable Integer userId) {
-        List<Beneficiary> beneficiaries = beneficiaryService.getAllBeneficiariesForUser(userId);
-        if (beneficiaries.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.ok(beneficiaries);
+        try {
+            List<Beneficiary> beneficiaries = beneficiaryService.getAllBeneficiariesForUser(userId);
+            if (beneficiaries.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            } else {
+                return ResponseEntity.ok(beneficiaries);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
 }

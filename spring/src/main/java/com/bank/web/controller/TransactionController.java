@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.NoSuchElementException;
+
 @RestController
-@RequestMapping("/bank/account/transactions")
+@RequestMapping("/bank-api/account/transactions")
 @CrossOrigin(origins = "http://localhost:3000")
 public class TransactionController {
     private final TransactionService transactionService;
@@ -20,12 +22,20 @@ public class TransactionController {
 
     @PostMapping("/transfer/{accountId}")
     public ResponseEntity<String> performTransaction(@PathVariable int accountId, @RequestBody Transaction transaction) {
-        boolean transactionResult = transactionService.performTransaction(accountId, transaction.getToAccountNumber(), transaction.getAmount());
+        try {
+            boolean transactionResult = transactionService.performTransaction(accountId, transaction.getToAccountNumber(), transaction.getAmount());
 
-        if (transactionResult) {
-            return ResponseEntity.ok("Transaction successful!");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Transaction failed!");
+            if (transactionResult) {
+                return ResponseEntity.ok("Transaction successful!");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Transaction failed!");
+            }
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account not found");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred during the transaction.");
         }
     }
 }

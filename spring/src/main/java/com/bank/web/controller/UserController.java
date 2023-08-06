@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/bank")
+@RequestMapping("/bank-api")
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
@@ -17,27 +17,35 @@ public class UserController {
 
     @PostMapping("/addUser")
     public ResponseEntity<Integer> addUser(@RequestBody User user) {
-        Integer userId = userService.saveUser(user);
-        if (userId != null) {
+        try {
+            Integer userId = userService.saveUser(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(userId);
-        } else {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @GetMapping("/getUser/{email}")
     public ResponseEntity<User> findUser(@PathVariable String email) {
-        User user = userService.getUserByEmail(email);
-        if (user != null) {
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.notFound().build();
+        try {
+            User user = userService.getUserByEmail(email);
+            if (user != null) {
+                return ResponseEntity.ok(user);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @GetMapping("/checkEmail/{email}")
     public ResponseEntity<Boolean> checkEmail(@PathVariable String email) {
-        boolean emailExists = userService.checkUserEmail(email);
-        return ResponseEntity.ok(emailExists);
+        try {
+            boolean emailExists = userService.checkUserEmail(email);
+            return ResponseEntity.ok(emailExists);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }
