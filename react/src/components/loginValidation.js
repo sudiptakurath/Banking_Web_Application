@@ -5,7 +5,9 @@ export function validateUser(emailId, password) {
     .get(`http://localhost:8080/bank/getUser/${emailId}`)
     .then((response) => {
       const fetchedUser = response.data;
-      if (fetchedUser.password === password) {
+      const bcrypt = require('bcryptjs');
+      const doesPasswordMatch = bcrypt.compareSync(password, fetchedUser.password)
+      if (doesPasswordMatch) {
         // return "Credentials match";
         return {
           status: "AUTHENTICATION_SUCCESS",

@@ -138,13 +138,12 @@ function SignupForm() {
         .then((result) => {
          if (result === true) {
             setValidationResult("Email already exists");
-          } else if (result === false) {
-            setValidationResult("Error occurred, please retry");
           } else {
+            const bcrypt = require('bcryptjs')
             const age = calculateAge(dob);
             const data = {
              email: email,
-              password: password,
+              password: bcrypt.hashSync(password, bcrypt.genSaltSync()),
               firstName: first_name,
               lastName: last_name,
               dob: dob,
