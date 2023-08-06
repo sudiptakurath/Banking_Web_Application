@@ -22,19 +22,26 @@ public class TransactionService {
     private KYCRepository kycRepository;
 
     public boolean performTransaction(int accountId, Integer toAccountNumber, float amount) {
-        Account senderAccount = accountRepository.findById(accountId).orElseThrow(() -> new NoSuchElementException("Account not found"));
+        Account senderAccount = accountRepository.findById(accountId).orElseThrow(() -> new NoSuchElementException("Sender account not found"));
 
         Optional<KYC> senderKYC = kycRepository.findByAccountId(accountId);
         if (senderKYC.isEmpty() || !senderKYC.get().getVerified()) {
-            return false;
+            throw new IllegalStateException("Your account is not KYC verified");
         }
 
         float senderCurrentBalance = senderAccount.getBalance();
-        if (senderCurrentBalance < 1000 || senderCurrentBalance < amount || amount <= 0) {
-            return false;
+        if (senderCurrentBalance < 1000) {
+            throw new IllegalStateException("Your account must have a minimum balance of 1000");
         }
 
-        // Check if the receiver account exists
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Amount should be greater than 0");
+        }
+
+        if (senderCurrentBalance < amount) {
+            throw new IllegalStateException("Insufficient balance in your account");
+        }
+
         if (toAccountNumber != null) {
             Optional<Account> receiverAccountOptional = accountRepository.findByAccountNumber(toAccountNumber);
             if (receiverAccountOptional.isPresent()) {
@@ -46,26 +53,52 @@ public class TransactionService {
                 accountRepository.save(receiverAccount);
 
                 float updatedSenderBalance = senderCurrentBalance - amount;
+                if (updatedSenderBalance >= 1000) {
+                    senderAccount.setBalance(updatedSenderBalance);
+                    accountRepository.save(senderAccount);
+
+                    Transaction senderTransaction = new Transaction(senderAccount, -amount);
+                    transactionRepository.save(senderTransaction);
+
+                    Transaction receiverTransaction = new Transaction(receiverAccount, amount);
+                    transactionRepository.save(receiverTransaction);
+
+                    return true;
+                } else {
+                    // Rollback the transaction, as the minimum balance of 1000 is not maintained
+                    receiverAccount.setBalance(receiverCurrentBalance);
+                    accountRepository.save(receiverAccount);
+                    throw new IllegalStateException("Transaction failed! Your account must have a minimum balance of 1000");
+                }
+            } else {
+                // Receiver account does not exist, only deduct the amount from the sender's account
+                float updatedSenderBalance = senderCurrentBalance - amount;
+                if (updatedSenderBalance >= 1000) {
+                    senderAccount.setBalance(updatedSenderBalance);
+                    accountRepository.save(senderAccount);
+
+                    Transaction senderTransaction = new Transaction(senderAccount, -amount);
+                    transactionRepository.save(senderTransaction);
+
+                    return true;
+                } else {
+                    throw new IllegalStateException("Transaction failed! Your account must have a minimum balance of 1000");
+                }
+            }
+        } else {
+            // No receiver account specified, only deduct the amount from the sender's account
+            float updatedSenderBalance = senderCurrentBalance - amount;
+            if (updatedSenderBalance >= 1000) {
                 senderAccount.setBalance(updatedSenderBalance);
                 accountRepository.save(senderAccount);
 
                 Transaction senderTransaction = new Transaction(senderAccount, -amount);
                 transactionRepository.save(senderTransaction);
 
-                Transaction receiverTransaction = new Transaction(receiverAccount, amount);
-                transactionRepository.save(receiverTransaction);
-
                 return true;
+            } else {
+                throw new IllegalStateException("Transaction failed! Your account must have a minimum balance of 1000");
             }
         }
-
-        float updatedSenderBalance = senderCurrentBalance - amount;
-        senderAccount.setBalance(updatedSenderBalance);
-        accountRepository.save(senderAccount);
-
-        Transaction senderTransaction = new Transaction(senderAccount, -amount);
-        transactionRepository.save(senderTransaction);
-
-        return true;
     }
 }

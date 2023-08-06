@@ -42,7 +42,7 @@ public class Account {
 
     @PrePersist
     void valueGenerator() {
-        int accountNumberLength = 12;
+        int accountNumberLength = 7;
         long maxAccountNumber = (long) Math.pow(10, accountNumberLength);
         do {
             accountNumber = (long) (Math.random() * maxAccountNumber);

@@ -28,10 +28,12 @@ public class TransactionController {
             if (transactionResult) {
                 return ResponseEntity.ok("Transaction successful!");
             } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Transaction failed!");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Transaction failed! Insufficient balance or account not verified.");
             }
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account not found");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
