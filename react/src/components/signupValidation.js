@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function checkUserExists(email) {
   return axios
-    .get(`http://localhost:8080/bank/checkEmail/${email}`)
+    .get(`http://localhost:8080/bank-api/checkEmail/${email}`)
     .then((response) => {
       return response.data;
     })
@@ -13,7 +13,7 @@ export function checkUserExists(email) {
 
 export function SaveUser(User){
     return axios
-    .post(`http://localhost:8080/bank/addUser`, User)
+    .post(`http://localhost:8080/bank-api/addUser`, User)
     .then((response) => {
         return response.data;
     })

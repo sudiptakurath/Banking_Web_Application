@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function validateUser(emailId, password) {
   return axios
-    .get(`http://localhost:8080/bank/getUser/${emailId}`)
+    .get(`http://localhost:8080/bank-api/getUser/${emailId}`)
     .then((response) => {
       const fetchedUser = response.data;
       const bcrypt = require('bcryptjs');
