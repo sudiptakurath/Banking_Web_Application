@@ -27,19 +27,19 @@ public class Transaction {
     @Column(name = "amount")
     private Float amount;
 
-    @PrePersist
-    void valueGenerator() {
-        if (transactionDate == null) {
-            transactionDate = new Date();
-        }
-    }
-
     public Transaction() {
     }
 
     public Transaction(Account account, float amount) {
         this.account = account;
         this.amount = amount;
+    }
+
+    @PrePersist
+    void valueGenerator() {
+        if (transactionDate == null) {
+            transactionDate = new Date();
+        }
     }
 
     public int getTransactionId() {

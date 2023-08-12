@@ -1,6 +1,7 @@
 package com.bank.web.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
@@ -14,6 +15,7 @@ public class Account {
     @Column(name = "account_id", updatable = false)
     private int accountId;
 
+    @Getter
     @Setter
     @OneToOne(mappedBy = "account")
     private User user;

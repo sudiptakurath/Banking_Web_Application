@@ -13,21 +13,20 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public Integer saveUser(User user){
+    public Integer saveUser(User user) {
         var resp = userRepository.save(user);
-        if(resp != null){
+        if (resp != null) {
             return 1;
-        }
-        else{
+        } else {
             return 0;
         }
     }
 
-    public User getUserByEmail(String email){
+    public User getUserByEmail(String email) {
         return userRepository.findByEmail(email).orElse(null);
     }
 
-    public boolean checkUserEmail(String email){
+    public boolean checkUserEmail(String email) {
         Optional<User> user = userRepository.findByEmail(email);
         return user.isPresent();
     }

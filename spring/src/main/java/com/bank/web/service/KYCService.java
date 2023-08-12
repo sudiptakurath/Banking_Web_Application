@@ -16,6 +16,7 @@ public class KYCService {
     private KYCRepository kycRepository;
     @Autowired
     private AccountRepository accountRepository;
+
     public void createAccountKYC(int accountId, KYC kyc) {
         Account account = accountRepository.findById(accountId)
                 .orElseThrow(() -> new IllegalArgumentException("Account with ID " + accountId + " not found"));
@@ -39,7 +40,7 @@ public class KYCService {
         return panNumber.matches(PAN_REGEX);
     }
 
-    public boolean checkpanNumber(String panNumber){
+    public boolean checkpanNumber(String panNumber) {
         Optional<KYC> kyc = kycRepository.findByPanNumber(panNumber);
         return kyc.isPresent();
     }
