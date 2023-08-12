@@ -15,7 +15,7 @@ export default function UserList() {
   
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/bank/admin/getUserDetails');
+        const response = await axios.get('http://localhost:8080/admin/getUsersByUserType');
         setUsers(response.data);
       } catch (error) {
         console.error(error);
@@ -30,28 +30,28 @@ export default function UserList() {
         <h1>User details</h1>
         <TableContainer component={Paper}>
             <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Username</TableCell>
-                        <TableCell>Email</TableCell>
-                        <TableCell>First Name</TableCell>
-                        <TableCell>Last Name</TableCell>
-                        <TableCell>Age</TableCell>
-                        <TableCell>Contact</TableCell>
-                        <TableCell>Address</TableCell>
-                        <TableCell>City</TableCell>
-                        <TableCell>Country</TableCell>
+                <TableHead> 
+                    <TableRow style={{backgroundColor: "#1976d2"}}>
+                        <TableCell style={{color:"#fff"}}><b>Username</b></TableCell>
+                        <TableCell style={{color:"#fff"}}><b>Email</b></TableCell>
+                        <TableCell style={{color:"#fff"}}><b>First Name</b></TableCell>
+                        <TableCell style={{color:"#fff"}}><b>Last Name</b></TableCell>
+                        <TableCell style={{color:"#fff"}}><b>Age</b></TableCell>
+                        <TableCell style={{color:"#fff"}}><b>Contact</b></TableCell>
+                        <TableCell style={{color:"#fff"}}><b>Address</b></TableCell>
+                        <TableCell style={{color:"#fff"}}><b>City</b></TableCell>
+                        <TableCell style={{color:"#fff"}}><b>Country</b></TableCell>
                     </TableRow> 
                 </TableHead>
                 <TableBody>
                 {users.map((user) => (
                     <TableRow key={user.id}>
+                        <TableCell>{user.username}</TableCell>
                         <TableCell>{user.email}</TableCell>
-                        <TableCell>{user.email}</TableCell>
-                        <TableCell>{user.first_name}</TableCell>
-                        <TableCell>{user.last_name}</TableCell>
+                        <TableCell>{user.firstname}</TableCell>
+                        <TableCell>{user.lastname}</TableCell>
                         <TableCell>{user.age}</TableCell>
-                        <TableCell>{user.contact_num}</TableCell>
+                        <TableCell>{user.contact}</TableCell>
                         <TableCell>{user.address}</TableCell>
                         <TableCell>{user.city}</TableCell>
                         <TableCell>{user.country}</TableCell>
