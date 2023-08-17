@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function SaveTransaction(account_id, reqBody){
     return axios
-    .post(`http://localhost:8080/bank-api/account/transactions/${account_id}`, reqBody)
+    .post(`http://localhost:8080/bank-api/account/transactions/transfer/${account_id}`, reqBody)
     .then((response) => {
         return response.data;
     })

@@ -95,9 +95,9 @@ export default function Transactions() {
       setValidationResult("Enter required data");
     } else {
             const data = {
-              toAccountNumber: accNo,
+              toAccountNumber: parseInt(accNo),
               toAccountName: accName,
-              amount: amount
+              amount: parseFloat(amount)
             };
             SaveTransaction(user.accountNumber, data).then((resp) => {
               if (resp === 1) {
