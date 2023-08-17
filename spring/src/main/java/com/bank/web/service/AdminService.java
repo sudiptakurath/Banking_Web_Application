@@ -36,11 +36,6 @@ public class AdminService {
         return adminRepository.findUsersByUserRequest(0);
     }
 
-//    public Admin updateUsersByUserType(Admin admin){
-//        Admin updateusertype = adminRepository.save(admin);
-//        return updateusertype;
-//    }
-
     public ResponseEntity<String> updateUserStatus(int id, Map<String, Integer> userType) {
         Optional<User> optionalUser = adminRepository.findById(id);
         if (optionalUser.isPresent()) {

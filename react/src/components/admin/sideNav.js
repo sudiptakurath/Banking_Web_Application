@@ -18,8 +18,9 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { useNavigate } from 'react-router-dom';
 import LogoutIcon from "@mui/icons-material/Logout";
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 function ResponsiveDrawer(props) {
   const { window } = props;
@@ -33,7 +34,18 @@ function ResponsiveDrawer(props) {
   const drawer = (
     
     <div>
-      <Toolbar />
+      <Toolbar>
+      <List>
+          <ListItem disablePadding onClick={()=>navigate('/admin-home')}>
+            <ListItemButton>
+              <ListItemIcon>
+                <AccountBalanceIcon />
+              </ListItemIcon>
+              <ListItemText primary="BANK NAME" />
+            </ListItemButton>
+          </ListItem>
+      </List>
+      </Toolbar>
       <Divider />
       <List>
           <ListItem disablePadding onClick={()=>navigate('/admin-home')}>
@@ -82,7 +94,7 @@ function ResponsiveDrawer(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -101,7 +113,7 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h4" noWrap component="div">
             Admin Panel
           </Typography>
         </Toolbar>

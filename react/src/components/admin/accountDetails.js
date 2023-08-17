@@ -7,9 +7,9 @@ import { useParams } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export default function AccountDetails() {
     const [users, setUsers] = useState([]);
@@ -39,6 +39,10 @@ export default function AccountDetails() {
                 <Toolbar/>
                 <h1>Account details of {eid}</h1>
                 <br/>
+                {users.length === 0 ? (
+                <h2>No records to display</h2>
+                ) : (
+                <div>
                 {users.map((user) => (
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} columns={{ xs: 2, sm: 8, md: 12 }}>
                   <Grid item xs={6}>
@@ -86,12 +90,14 @@ export default function AccountDetails() {
                     </Card>        
                   </Grid>
                   <Grid item xs={6}>
-                    <Button onClick={()=>navigate(`/transaction-details/${user.accountId}/${eid}`)}>
-                          Transaction details
+                    <Button variant="outlined" size='large' onClick={()=>navigate(`/transaction-details/${user.accountId}/${eid}`)}>
+                          Transaction details <ArrowForwardIcon/>
                     </Button>            
                   </Grid>
                 </Grid>  
                 ))} 
+                </div>
+                 )}
             </Box>
     </Box>
   )

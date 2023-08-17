@@ -43,11 +43,6 @@ public class AdminController {
         return adminService.getUsersByUserRequest();
     }
 
-//    @PutMapping("/updateUsersByUserType/{id}")
-//    public Admin updateUsersByUserType(@RequestBody Admin admin, @PathVariable int id){
-//        return adminService.updateUsersByUserType(admin);
-//    }
-
     @PutMapping("/updateUserByUsertype/{id}")
     public ResponseEntity<String> updateUserStatus(@PathVariable int id, @RequestBody Map<String, Integer> userType) {
         return adminService.updateUserStatus(id, userType);
