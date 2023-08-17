@@ -12,6 +12,7 @@ import "./App.css";
 import "./components/dashboard/Dashboard.css";
 import Footer from "./components/footer/Footer";
 import Beneficiaries from "./components/Beneficiaries/Beneficiaries";
+import Transactions from "./components/Transactions/Transactions";
 import Home from "./components/admin/home";
 import UserList from "./components/admin/userDetails";
 import UserRequests from "./components/admin/userRequests";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/accounts" element={<Account />} />
           <Route path="/transfer" element={<Transfer />} />
           <Route path="/add-beneficiaries" element={<Beneficiaries />} />
+          <Route path="/transaction" element={<Transactions />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact-us" element={<Contactus />} />
         </Route>

@@ -16,7 +16,7 @@ function Transfer() {
         </Button>
       </div>
       <div className="btn-transfer">
-        <Button variant="contained" href="#" size="large" color="info">
+        <Button variant="contained" href="/transaction" size="large" color="info">
           Click to Initiate Transfer
         </Button>
       </div>
