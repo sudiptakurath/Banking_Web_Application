@@ -1,5 +1,6 @@
 package com.bank.web.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -12,6 +13,7 @@ public class User {
     @Column(name = "user_id", updatable = false)
     private int userId;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_account_id")
     private Account account;
