@@ -1,5 +1,7 @@
 package com.bank.web.controller;
 
+import com.bank.web.entity.Account;
+import com.bank.web.entity.Transaction;
 import com.bank.web.entity.User;
 import com.bank.web.repository.AdminRepository;
 import com.bank.web.service.AdminService;
@@ -49,6 +51,15 @@ public class AdminController {
     @PutMapping("/updateUserByUsertype/{id}")
     public ResponseEntity<String> updateUserStatus(@PathVariable int id, @RequestBody Map<String, Integer> userType) {
         return adminService.updateUserStatus(id, userType);
+    }
+
+    @GetMapping("/getAccountDetailsByUserId/{id}")
+    public List<Account> getAccountDetailsByUserId(@PathVariable int id){
+        return adminService.getAccountDetailsByUserId(id);
+    }
+    @GetMapping("/getTransactionDetailsByAccountId/{accountId}")
+    public List<Transaction> getTransactionDetailsByAccountId(@PathVariable int accountId){
+        return adminService.getTransactionDetailsByAccountId(accountId);
     }
 
 }

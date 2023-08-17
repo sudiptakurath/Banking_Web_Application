@@ -23,7 +23,7 @@ export default function UserList() {
       }
     };
 
-     const handleAction = (userId, action) => {
+    const handleAction = (userId, action) => {
     const updatedUsers = users.map(user => {
       if (user.userId === userId) {
         return { ...user, usertype: action };
@@ -39,7 +39,9 @@ export default function UserList() {
       .catch(error => {
         console.error('Error updating user:', error);
       });
-      // window.location.reload(false);
+      setTimeout(() => 
+      window.location.reload(), 500);
+    
   };
 
     return (
@@ -48,6 +50,7 @@ export default function UserList() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar/>
         <h1>User Requests</h1>
+        <br/>
         {users.length === 0 ? (
                 <h2>No records to display</h2>
                 ) : (

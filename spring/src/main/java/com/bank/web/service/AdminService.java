@@ -1,7 +1,11 @@
 package com.bank.web.service;
 
+import com.bank.web.entity.Account;
+import com.bank.web.entity.Transaction;
 import com.bank.web.entity.User;
+import com.bank.web.repository.AccountRepository;
 import com.bank.web.repository.AdminRepository;
+import com.bank.web.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,6 +19,10 @@ public class AdminService {
 
     @Autowired
     AdminRepository adminRepository;
+    @Autowired
+    AccountRepository accountRepository;
+    @Autowired
+    TransactionRepository transactionRepository;
 
     public List<User> getUserList() {
         return adminRepository.findAll();
@@ -45,4 +53,21 @@ public class AdminService {
         }
     }
 
+    public List<Account> getAccountDetailsByUserId(int userId){
+        Optional<User> optionalUser = adminRepository.findById(userId);
+        List<Account> accountList = null;
+        if (optionalUser.isPresent()) {
+            accountList = accountRepository.findAccountByUserId(userId);
+        }
+        return accountList;
+    }
+
+    public List<Transaction> getTransactionDetailsByAccountId(int accountId){
+        Optional<Account> optionalAccount = accountRepository.findById(accountId);
+        List<Transaction> transactionList = null;
+        if (optionalAccount.isPresent()) {
+            transactionList = transactionRepository.findTransactionsByAccountId(accountId);
+        }
+        return transactionList;
+    }
 }
