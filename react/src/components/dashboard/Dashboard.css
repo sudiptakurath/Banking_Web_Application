@@ -19,7 +19,6 @@ li {
   list-style: none;
 }
 
-
 /* navbar style start  */
 
 .main-nav {
@@ -30,21 +29,20 @@ li {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(12, 98, 65, 0.3) 0px 30px 60px -30px;
   color: purple;
-  
 }
 
 .logo {
   display: grid;
-  background-color: #4774d655;  
+  background-color: #4774d655;
   grid-column: 2/3;
-  justify-content:flex-start;
-  align-items: center;  
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .menu-link {
   grid-column: 3/4;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -65,7 +63,6 @@ li {
 .menu-link div.selected {
   font-weight: 700;
 }
-
 
 .menu-link ul {
   height: 10rem;
@@ -94,7 +91,6 @@ li {
   grid-column: 2/3;
 }
 
-
 .logo h2 span {
   font-size: 3.5rem;
 }
@@ -120,11 +116,10 @@ li {
 }
 
 .social-media .hamburger-menu {
-  display:none;
+  display: none;
 }
 
 /* responsive css style  */
-
 
 @media (max-width: 1080px) {
   .main-nav {
@@ -263,92 +258,108 @@ li {
     font-size: 2.5rem;
   }
 }
-#footer{
-  font-size:small;
+#footer {
+  font-size: small;
   text-align: center;
 }
-.name{
-  font-size:medium;
-  text-align:left;
-  font-family: 'Courier New', Courier, monospace;
+.name {
+  font-size: medium;
+  text-align: left;
+  font-family: "Courier New", Courier, monospace;
   margin-left: 10%;
   margin-top: 1%;
 }
-.lastlogin{
-  font-size:medium;
-  text-align:left;
-  font-family: 'Courier New', Courier, monospace;
+.lastlogin {
+  font-size: medium;
+  text-align: left;
+  font-family: "Courier New", Courier, monospace;
   margin-left: 10%;
   margin-top: 5px;
 }
-.btn-beneficiary{
-  padding-block-start: 1%;  
+.btn-beneficiary {
+  padding-block-start: 1%;
   text-align: center;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-.btn-transfer{
+.btn-transfer {
   padding-block-start: 4%;
   text-align: center;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-.saving{
+.saving {
   text-align: left;
   padding-bottom: 3%;
   padding-top: 2%;
   margin-left: 10%;
   font-size: small;
-  color:#3b5998;
+  color: #3b5998;
 }
-.current, .beneficiaries{
+.current,
+.beneficiaries {
   text-align: left;
   padding-bottom: 1%;
   padding-top: 5%;
   margin-left: 10%;
   font-size: small;
-  color:#3b5998;
+  color: #3b5998;
 }
-.header1{
+.header1 {
   text-align: center;
   padding: 4%;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size:x-large;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: x-large;
 }
 
-.table-container{
+.table-container {
   display: flex;
   justify-content: left;
   align-items: center;
   height: 6vh;
   margin-left: 10%;
-    
 }
-.table-data{
-  font-size:small;  
+.table-data {
+  font-size: small;
 }
 .btn {
-  
   padding: auto;
   margin: auto;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   border: none;
-  color:#3b5998;
+  color: #3b5998;
   font-weight: bolder;
-  font-size:x-large;
+  font-size: x-large;
 }
 
-.footer{
+.footer {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 25px; 
+  height: 25px;
   background-color: #f5f5f5;
   text-align: center;
-} 
-td{
+}
+td {
   text-align: center;
 }
-table{
+table {
   width: 80%;
+}
+.btn-profile {
+  padding-block-start: 10%;
+  text-align: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.btn-profile1 {
+  padding-block-start: 2%;
+  text-align: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.form-profile {
+  padding-block-start: 1%;
+  text-align: center;
 }

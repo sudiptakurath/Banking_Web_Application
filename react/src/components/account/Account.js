@@ -7,18 +7,18 @@ function Account() {
   const [beneficiaries, setBeneficiaries] = useState([]);
 
   const savingAccounts = accounts.filter((account) => {
-    return account.account_type === "savings";
+    return account.accountType === "savings";
   });
   console.log(savingAccounts);
   const currentAccounts = accounts.filter((account) => {
-    return account.account_type === "current";
+    return account.accountType === "current";
   });
   console.log(currentAccounts);
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/bank/accounts/101"
+        "http://localhost:8080/bank-api/account/accountsByUserId/1"
       );
       console.log("response", response);
 
@@ -62,11 +62,11 @@ function Account() {
           </tr>
           {savingAccounts.map((account) => (
             <tr>
-              <td>{account.account_number}</td>
-              <td>{account.branch_name}</td>
+              <td>{account.accountNumber}</td>
+              <td>{account.branchName}</td>
               <td>{account.balance}</td>
               <td>
-                <a href="">Last 5 transaction</a>
+                <a href="/statement">Last 5 transaction</a>
               </td>
             </tr>
           ))}
@@ -85,11 +85,11 @@ function Account() {
           </tr>
           {currentAccounts.map((account) => (
             <tr>
-              <td>{account.account_number}</td>
-              <td>{account.branch_name}</td>
+              <td>{account.accountNumber}</td>
+              <td>{account.branchName}</td>
               <td>{account.balance}</td>
               <td>
-                <a href="">Last 5 transaction</a>
+                <a href="/statement">Last 5 transaction</a>
               </td>
             </tr>
           ))}
