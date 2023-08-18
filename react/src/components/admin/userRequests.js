@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TableContainer,Table,TableHead,TableBody,TableRow,TableCell } from '@material-ui/core';
 import Paper from '@mui/material/Paper';
-import SideNav from './sideNav'
+import SideNav from './sideNav';
 import Box from '@mui/material/Box';
 import { Toolbar, Button } from '@mui/material';
 import TablePagination from '@mui/material/TablePagination';
@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 
-export default function UserList() {
+export default function UserRequests() {
     const [users, setUsers] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);

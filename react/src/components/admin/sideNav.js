@@ -11,6 +11,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import HomeIcon from '@mui/icons-material/Home';
@@ -71,9 +72,19 @@ function ResponsiveDrawer(props) {
           <ListItem disablePadding onClick={()=>navigate('/users-requests')}>
             <ListItemButton>
               <ListItemIcon>
-                <PersonAddIcon/>
+                <GroupAddIcon/>
               </ListItemIcon>
               <ListItemText primary="Users Requests" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+        <List>
+          <ListItem disablePadding onClick={()=>navigate('/open-account')}>
+            <ListItemButton>
+              <ListItemIcon>
+                <PersonAddIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Open Account" />
             </ListItemButton>
           </ListItem>
         </List>
@@ -103,7 +114,7 @@ function ResponsiveDrawer(props) {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar>
+        <Toolbar style={{backgroundColor:'#1976d2',color:'#fff'}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"

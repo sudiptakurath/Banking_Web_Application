@@ -17,7 +17,7 @@ export default function UserList() {
     const [searchText, setSearchText] = useState('');
     
     const data = users;
-
+  
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
     };
@@ -80,6 +80,7 @@ export default function UserList() {
                 <TableHead> 
                     <TableRow style={{backgroundColor: "#1976d2"}}>
                         <TableCell style={{color:"#fff"}}><b>Email</b></TableCell>
+                        <TableCell style={{color:"#fff"}}><b>User ID</b></TableCell>
                         <TableCell style={{color:"#fff"}}><b>First Name</b></TableCell>
                         <TableCell style={{color:"#fff"}}><b>Last Name</b></TableCell>
                         <TableCell style={{color:"#fff"}}><b>Age</b></TableCell>
@@ -93,6 +94,7 @@ export default function UserList() {
                 {filteredData.map((user) => (
                     <TableRow key={user.userId}>
                         <TableCell><a href={`/account-details/${user.userId}/${user.email}`}>{user.email}</a></TableCell>
+                        <TableCell>{user.userId}</TableCell>
                         <TableCell>{user.firstName}</TableCell>
                         <TableCell>{user.lastName}</TableCell>
                         <TableCell>{user.age}</TableCell>
@@ -120,4 +122,3 @@ export default function UserList() {
     </Box>
     );
   }
-  

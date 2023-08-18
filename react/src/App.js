@@ -18,6 +18,7 @@ import UserList from "./components/admin/userDetails";
 import UserRequests from "./components/admin/userRequests";
 import AccountDetails from "./components/admin/accountDetails";
 import TransactionDetails from "./components/admin/transactionsDetails";
+import OpenAccount from "./components/admin/openAccount";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/admin-home" exact element={<Home />}></Route>
         <Route path="/users-list" exact element={<UserList />}></Route>
         <Route path="/users-requests" exact element={<UserRequests />}></Route>
+        <Route path="/open-account" exact element={<OpenAccount />}></Route>
         <Route path="/account-details/:userId/:email" exact element={<AccountDetails />}></Route>
         <Route path="/transaction-details/:accountId/:email" exact element={<TransactionDetails />}></Route>
       </Routes>
