@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -38,5 +40,19 @@ public class AccountController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while adding money to the account.");
         }
+    }
+
+
+    //Fetch in Account Component
+    @GetMapping("/accountsByUserId/{userId}")
+    public List<Account> findAllAccounts(@PathVariable int userId){
+        List<Integer> users = new ArrayList<Integer>();
+        users.add(userId);
+        return accountService.getAccount(users);
+
+    }
+    @GetMapping("/accountById/{userId}")
+    public Account findAccountById(@PathVariable int userId){
+        return accountService.getAccountById(userId);
     }
 }

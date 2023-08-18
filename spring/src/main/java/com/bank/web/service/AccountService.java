@@ -11,6 +11,7 @@ import com.bank.web.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,6 +36,13 @@ public class AccountService {
         user.setAccount(savedAccount);
 
         userRepository.save(user);
+    }
+
+    public List<Account> getAccount(List<Integer> users){
+        return accountRepository.findAllById(users);
+    }
+    public Account getAccountById(int userId){
+        return accountRepository.findById(userId).orElse(null);
     }
 
     public void addMoneyToAccount(int accountId, float amount) {
