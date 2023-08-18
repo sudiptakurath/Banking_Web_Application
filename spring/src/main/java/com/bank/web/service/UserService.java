@@ -26,6 +26,10 @@ public class UserService {
         return userRepository.findByEmail(email).orElse(null);
     }
 
+    public User getUserByUserId(int userId){
+        return userRepository.findByUserId(userId).orElse(null);
+    }
+
     public boolean checkUserEmail(String email) {
         Optional<User> user = userRepository.findByEmail(email);
         return user.isPresent();

@@ -48,4 +48,20 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    //Fetch in Profile Component
+
+    @GetMapping("/getUserByUserId/{userId}")
+    public ResponseEntity<User> findUserByUserId(@PathVariable int userId) {
+        try {
+            User user = userService.getUserByUserId(userId);
+            if (user != null) {
+                return ResponseEntity.ok(user);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
