@@ -17,7 +17,7 @@ public class BeneficiaryService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public void addBeneficiaryForUser(int accountId, Beneficiary beneficiary) {
+    public void addBeneficiaryForUser(Integer accountId, Beneficiary beneficiary) {
         Account account = accountRepository.findById(accountId)
                 .orElseThrow(() -> new IllegalArgumentException("Account with ID " + accountId + " not found"));
         beneficiary.setAccount(account);
