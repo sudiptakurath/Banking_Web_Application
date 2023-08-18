@@ -1,5 +1,6 @@
 package com.bank.web.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,9 +23,10 @@ public class Account {
     @Column(name = "fk_user_id")
     private int userId;
 
+
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Beneficiary> beneficiaries;
-
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_kyc_id")
     private KYC kyc;
