@@ -40,7 +40,7 @@ public class AccountService {
             return;
         }
 
-       float currentBalance = account.getBalance();
+        float currentBalance = account.getBalance();
 
         if (amount <= 0) {
             throw new IllegalArgumentException("Amount should be greater than 0");
