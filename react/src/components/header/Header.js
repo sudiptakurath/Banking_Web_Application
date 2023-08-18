@@ -29,6 +29,9 @@ function Header() {
               <div onClick={() => navigate("/transfer")}>
                 <li>Transfer</li>
               </div>
+              <div onClick={() => navigate("/statement")}>
+                <li>Statement</li>
+              </div>
               <div onClick={() => navigate("/profile")}>
                 <li>Profile</li>
               </div>

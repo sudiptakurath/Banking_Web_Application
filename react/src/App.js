@@ -17,6 +17,7 @@ import UserList from "./components/admin/userDetails";
 import UserRequests from "./components/admin/userRequests";
 import AccountDetails from "./components/admin/accountDetails";
 import TransactionDetails from "./components/admin/transactionsDetails";
+import Statement from "./components/statement/statement";
 
 function App() {
   return (
@@ -31,12 +32,21 @@ function App() {
           <Route path="/add-beneficiaries" element={<Beneficiaries />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact-us" element={<Contactus />} />
+          <Route path="/statement" element={<Statement />} />
         </Route>
         <Route path="/admin-home" exact element={<Home />}></Route>
         <Route path="/users-list" exact element={<UserList />}></Route>
         <Route path="/users-requests" exact element={<UserRequests />}></Route>
-        <Route path="/account-details/:userId/:email" exact element={<AccountDetails />}></Route>
-        <Route path="/transaction-details/:accountId/:email" exact element={<TransactionDetails />}></Route>
+        <Route
+          path="/account-details/:userId/:email"
+          exact
+          element={<AccountDetails />}
+        ></Route>
+        <Route
+          path="/transaction-details/:accountId/:email"
+          exact
+          element={<TransactionDetails />}
+        ></Route>
       </Routes>
       <Footer />
     </Router>

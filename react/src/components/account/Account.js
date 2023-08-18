@@ -66,7 +66,7 @@ function Account() {
               <td>{account.branchName}</td>
               <td>{account.balance}</td>
               <td>
-                <a href="">Last 5 transaction</a>
+                <a href="/statement">Last 5 transaction</a>
               </td>
             </tr>
           ))}
@@ -89,7 +89,7 @@ function Account() {
               <td>{account.branchName}</td>
               <td>{account.balance}</td>
               <td>
-                <a href="">Last 5 transaction</a>
+                <a href="/statement">Last 5 transaction</a>
               </td>
             </tr>
           ))}
