@@ -1,11 +1,14 @@
 package com.bank.web.service;
 
+import com.bank.web.controller.TransactionController;
 import com.bank.web.entity.Account;
 import com.bank.web.entity.KYC;
 import com.bank.web.entity.Transaction;
 import com.bank.web.repository.AccountRepository;
 import com.bank.web.repository.KYCRepository;
 import com.bank.web.repository.TransactionRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +24,9 @@ public class TransactionService {
     @Autowired
     private KYCRepository kycRepository;
 
-    public boolean performTransaction(int accountId, Integer toAccountNumber, float amount) {
-        Account senderAccount = accountRepository.findById(accountId).orElseThrow(() -> new NoSuchElementException("Sender account not found"));
+    public boolean performTransaction(Integer accountId, Integer toAccountNumber, String toAccountName, Float amount) {
+        Account senderAccount = accountRepository.findById(accountId)
+                .orElseThrow(() -> new NoSuchElementException("Sender account not found"));
 
         Optional<KYC> senderKYC = kycRepository.findByAccountId(accountId);
         if (senderKYC.isEmpty() || !senderKYC.get().getVerified()) {
@@ -61,6 +65,8 @@ public class TransactionService {
                     transactionRepository.save(senderTransaction);
 
                     Transaction receiverTransaction = new Transaction(receiverAccount, amount);
+                    receiverTransaction.setToAccountNumber(toAccountNumber);
+                    receiverTransaction.setToAccountName(toAccountName);
                     transactionRepository.save(receiverTransaction);
 
                     return true;

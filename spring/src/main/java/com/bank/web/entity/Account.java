@@ -87,6 +87,22 @@ public class Account {
         this.userId = userId;
     }
 
+    public List<Beneficiary> getBeneficiaries() {
+        return beneficiaries;
+    }
+
+    public void setBeneficiaries(List<Beneficiary> beneficiaries) {
+        this.beneficiaries = beneficiaries;
+    }
+
+    public KYC getKyc() {
+        return kyc;
+    }
+
+    public void setKyc(KYC kyc) {
+        this.kyc = kyc;
+    }
+
     public Long getAccountNumber() {
         return accountNumber;
     }
