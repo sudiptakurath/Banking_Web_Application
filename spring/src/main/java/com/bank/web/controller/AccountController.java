@@ -16,10 +16,10 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @PostMapping("/createAccount")
-    public ResponseEntity<String> createAccountForUser(@RequestBody Account account) {
+    @PostMapping("/createAccount/{userId}")
+    public ResponseEntity<String> createAccountForUser(@PathVariable Integer userId, @RequestBody Account account) {
         try {
-            accountService.createAccountForUser(account.getUserId(), account);
+            accountService.createAccountForUser(userId, account);  // Use userId from the path
             return ResponseEntity.ok("Account created successfully!");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

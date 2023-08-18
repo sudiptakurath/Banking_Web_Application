@@ -30,7 +30,10 @@ public class KYCService {
         }
 
         kyc.setVerified(true);
+
+        KYC savedKYC = kycRepository.save(kyc);
         kyc.setAccountId(account.getAccountId());
+
         kyc.setAccount(account);
         kycRepository.save(kyc);
     }

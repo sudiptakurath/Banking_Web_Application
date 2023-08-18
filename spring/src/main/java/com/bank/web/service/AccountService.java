@@ -27,9 +27,14 @@ public class AccountService {
     public void createAccountForUser(int userId, Account account) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User with ID " + userId + " not found"));
-        account.setUserId(user.getUserId());
+
         account.setUser(user);
-        accountRepository.save(account);
+        account.setUserId(user.getUserId());
+        Account savedAccount = accountRepository.save(account);
+
+        user.setAccount(savedAccount);
+
+        userRepository.save(user);
     }
 
     public void addMoneyToAccount(int accountId, float amount) {

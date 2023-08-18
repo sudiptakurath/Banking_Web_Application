@@ -18,7 +18,7 @@ public class BeneficiaryController {
     private BeneficiaryService beneficiaryService;
 
     @PostMapping("/addBeneficiary/{accountId}")
-    public ResponseEntity<String> addBeneficiaryForUser(@PathVariable int accountId, @RequestBody Beneficiary beneficiary) {
+    public ResponseEntity<String> addBeneficiaryForUser(@PathVariable Integer accountId, @RequestBody Beneficiary beneficiary) {
         try {
             beneficiaryService.addBeneficiaryForUser(accountId, beneficiary);
             return ResponseEntity.ok("Beneficiary added successfully!");
@@ -39,10 +39,10 @@ public class BeneficiaryController {
         }
     }
 
-    @GetMapping("/getBeneficiary/{userId}")
-    public ResponseEntity<List<Beneficiary>> getAllBeneficiariesForUser(@PathVariable Integer userId) {
+    @GetMapping("/getBeneficiary/{accountId}")
+    public ResponseEntity<List<Beneficiary>> getAllBeneficiariesForUser(@PathVariable Integer accountId) {
         try {
-            List<Beneficiary> beneficiaries = beneficiaryService.getAllBeneficiariesForUser(userId);
+            List<Beneficiary> beneficiaries = beneficiaryService.getAllBeneficiariesForUser(accountId);
             if (beneficiaries.isEmpty()) {
                 return ResponseEntity.noContent().build();
             } else {
