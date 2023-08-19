@@ -31,17 +31,15 @@ function Statement() {
       <div className="table-container">
         <table className="table-data">
           <tr>
-            <th>Transaction Id</th>
             <th>Transaction Date</th>
-            <th>From Account</th>
+            <th>Transaction Amount</th>
             <th>To Account Number</th>
             <th>To Account Name</th>
           </tr>
-          {statements.map((statement) => (
-            <tr>
-              <td>{statement.transaction_id}</td>
+          {statements.map((statement, index) => (
+             <tr key={index}>
               <td>{statement.transaction_date}</td>
-              <td>{statement.fk_account_id}</td>
+              <td>{statement.amount}</td>
               <td>{statement.to_acct_number}</td>
               <td>{statement.to_acct_name}</td>
             </tr>

@@ -72,7 +72,7 @@ function Account() {
           ))}
         </table>
       </div>
-      <div className="current">
+      {/* <div className="current">
         <h1>Current Account</h1>
       </div>
       <div className="table-container">
@@ -94,7 +94,7 @@ function Account() {
             </tr>
           ))}
         </table>
-      </div>
+      </div>*/}
 
       {/* <div className="beneficiaries">
         <h1>Beneficiaries</h1>
