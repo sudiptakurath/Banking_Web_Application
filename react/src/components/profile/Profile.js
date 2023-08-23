@@ -7,11 +7,12 @@ import axios from "axios";
 const Profile = () => {
   const [profile, setProfile] = useState([]);
   const [showUpdateProfile, setShowUpdateProfile] = useState(false);
+  const currentUserID = 1;
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/bank-api/getUserByUserId/1"
+        `http://localhost:8080/bank-api/getUserByUserId/${currentUserID}`
       );
       console.log("response", response);
 
