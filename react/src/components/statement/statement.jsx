@@ -5,11 +5,11 @@ import axios from "axios";
 function Statement() {
   const [statements, setStatements] = useState([]);
 
+  const currentUserID = sessionStorage.getItem("userId");
+
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8080/bank-api/statements/getStatement/101"
-      );
+      const response = await axios.get(`http://localhost:8080/bank-api/statements/getStatement/${currentUserID}`);
 
       setStatements(response.data);
     } catch (error) {
@@ -28,7 +28,7 @@ function Statement() {
       <div className="header1">
         <h2>Statement</h2>
       </div>
-      <div className="table-container">
+      <div className="table-container" style={{marginTop: "50px"}}>
         <table className="table-data">
           <thead>
             <tr>
@@ -41,10 +41,10 @@ function Statement() {
           <tbody>
             {statements.map((statement, index) => (
               <tr key={index}>
-                <td>{statement.transaction_date}</td>
+                <td>{statement.transactionDate}</td>
                 <td>{statement.amount}</td>
-                <td>{statement.to_acct_number}</td>
-                <td>{statement.to_acct_name}</td>
+                <td>{statement.toAccountNumber}</td>
+                <td>{statement.toAccountName}</td>
               </tr>
             ))}
           </tbody>

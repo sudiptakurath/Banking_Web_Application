@@ -16,8 +16,8 @@ function Header() {
           <div className="logo">
             <a href="/bank/accounts">
               <h2>
+                <span>Grp 3</span>
                 <span>B</span>ank
-                <span>N</span>ame
               </h2>
             </a>
           </div>
@@ -25,6 +25,9 @@ function Header() {
             <ul>
               <div onClick={() => navigate("/accounts")}>
                 <li>Accounts</li>
+              </div>
+              <div onClick={() => navigate("/kyc")}>
+                <li>KYC</li>
               </div>
               <div onClick={() => navigate("/transfer")}>
                 <li>Transfer</li>

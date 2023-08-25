@@ -13,7 +13,6 @@ function Dashboard() {
       const response = await axios.get(
         `http://localhost:8080/bank-api/getUserByUserId/${currentUserID}`
       );
-      console.log("response", response);
       setName(`${response.data.firstName} ${response.data.lastName}`);
       setLastLogin(response.data.creationDate);
     } catch (error) {

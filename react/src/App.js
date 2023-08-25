@@ -20,6 +20,7 @@ import AccountDetails from "./components/admin/accountDetails";
 import TransactionDetails from "./components/admin/transactionsDetails";
 import OpenAccount from "./components/admin/openAccount";
 import Statement from "./components/statement/statement";
+import KYC from "./components/KYC/kyc";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/signup" element={<SignupForm />} />
         <Route element={<Dashboard />}>
           <Route path="/accounts" element={<Account />} />
+          <Route path="/kyc" element={<KYC />} />
           <Route path="/transfer" element={<Transfer />} />
           <Route path="/add-beneficiaries" element={<Beneficiaries />} />
           <Route path="/transaction" element={<Transactions />} />

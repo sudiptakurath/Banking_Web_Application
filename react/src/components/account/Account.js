@@ -10,19 +10,19 @@ function Account() {
     return account.accountType === "savings";
   });
   console.log(savingAccounts);
+
   const currentAccounts = accounts.filter((account) => {
     return account.accountType === "current";
   });
-  console.log(currentAccounts);
+
+  const currentUserID = sessionStorage.getItem("userId");
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8080/bank-api/account/accountsByUserId/1"
-      );
+      const response = await axios.get(`http://localhost:8080/admin/getAccountDetailsByUserId/${currentUserID}`);
       console.log("response", response);
-
       setAccounts(response.data);
+
     } catch (error) {
       console.error(error);
     }
@@ -49,7 +49,7 @@ function Account() {
     <React.Fragment>
       <Outlet />
 
-      <div className="saving">
+      <div className="saving" style={{marginTop: "70px"}}>
         <h1>Saving Account</h1>
       </div>
       <div className="table-container">
@@ -58,16 +58,12 @@ function Account() {
             <th>Account Number</th>
             <th>Branch Name</th>
             <th>Current Balance</th>
-            <th>Last Transactions</th>
           </tr>
-          {savingAccounts.map((account) => (
+          {accounts.map((account) => (
             <tr>
               <td>{account.accountNumber}</td>
               <td>{account.branchName}</td>
               <td>{account.balance}</td>
-              <td>
-                <a href="/statement">Last 5 transaction</a>
-              </td>
             </tr>
           ))}
         </table>

@@ -71,13 +71,12 @@ export default function Transactions() {
 
   const [validationResult, setValidationResult] = useState("");
   
-  const params = useParams();
-  const uid = params.userId;
+  const currentUserID = sessionStorage.getItem("userId");
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/admin/getAccountDetailsByUserId/${uid}`);
-      setUser(response.data);
+      const response = await axios.get(`http://localhost:8080/admin/getAccountDetailsByUserId/${currentUserID}`);
+      setUser(response.data[0]);
     } catch (error) {
       console.error(error);
     }
@@ -95,16 +94,12 @@ export default function Transactions() {
       setValidationResult("Enter required data");
     } else {
             const data = {
-              toAccountNumber: parseInt(accNo),
+              toAccountNumber: accNo,
               toAccountName: accName,
-              amount: parseFloat(amount)
+              amount: amount
             };
-            SaveTransaction(user.accountNumber, data).then((resp) => {
-              if (resp === 1) {
-                setValidationResult("Transaction was done successfuly.");
-              } else {
-                setValidationResult("Error, Please try again.");
-              }
+            SaveTransaction(user.accountId, data).then((resp) => {
+                setValidationResult(resp);
             });
           }
   };

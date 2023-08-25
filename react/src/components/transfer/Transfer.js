@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Beneficiaries from "../Beneficiaries/Beneficiaries";
+import KYC from "../KYC/kyc";
 
 function Transfer() {
   return (
@@ -10,7 +11,8 @@ function Transfer() {
         <h1>Money Transfer</h1>
       </section>
       <Outlet />
-      <div className="btn-beneficiary">
+      
+        <div className="btn-beneficiary">
         <Button variant="contained" href="/add-beneficiaries" size="large" color="info">
           Click to Add Beneficiary
         </Button>
