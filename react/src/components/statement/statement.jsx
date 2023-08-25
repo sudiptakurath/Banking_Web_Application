@@ -30,20 +30,24 @@ function Statement() {
       </div>
       <div className="table-container">
         <table className="table-data">
-          <tr>
-            <th>Transaction Date</th>
-            <th>Transaction Amount</th>
-            <th>To Account Number</th>
-            <th>To Account Name</th>
-          </tr>
-          {statements.map((statement, index) => (
-             <tr key={index}>
-              <td>{statement.transaction_date}</td>
-              <td>{statement.amount}</td>
-              <td>{statement.to_acct_number}</td>
-              <td>{statement.to_acct_name}</td>
+          <thead>
+            <tr>
+              <th>Transaction Date</th>
+              <th>Transaction Amount</th>
+              <th>To Account Number</th>
+              <th>To Account Name</th>
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {statements.map((statement, index) => (
+              <tr key={index}>
+                <td>{statement.transaction_date}</td>
+                <td>{statement.amount}</td>
+                <td>{statement.to_acct_number}</td>
+                <td>{statement.to_acct_name}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </React.Fragment>

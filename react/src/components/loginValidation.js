@@ -8,13 +8,13 @@ export function validateUser(emailId, password) {
       const bcrypt = require('bcryptjs');
       const doesPasswordMatch = bcrypt.compareSync(password, fetchedUser.password)
       if (doesPasswordMatch) {
-        // return "Credentials match";
+        const userId = fetchedUser.userId; // Replace with the actual userId property
+        sessionStorage.setItem("userId", userId);
         return {
           status: "AUTHENTICATION_SUCCESS",
-          userType: fetchedUser.userType,
+          userType: fetchedUser.userType, 
         };
       } else {
-        // return "Credentials do not match";
         return { status: "AUTHENTICATION_FAILURE", userType: null };
       }
     })

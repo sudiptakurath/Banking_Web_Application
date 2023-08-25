@@ -7,7 +7,7 @@ import axios from "axios";
 const Profile = () => {
   const [profile, setProfile] = useState([]);
   const [showUpdateProfile, setShowUpdateProfile] = useState(false);
-  const currentUserID = 1;
+  const currentUserID = sessionStorage.getItem("userId");
 
   const fetchData = async () => {
     try {

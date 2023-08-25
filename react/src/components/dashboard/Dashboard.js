@@ -6,7 +6,7 @@ import axios from "axios";
 function Dashboard() {
   const [name, setName] = useState("");
   const [lastLogin, setLastLogin] = useState("");
-  const currentUserID = 1;
+  const currentUserID = sessionStorage.getItem("userId");
 
   const fetchData = async () => {
     try {
@@ -28,8 +28,8 @@ function Dashboard() {
     <React.Fragment>
       <Header />
 
-      <div className="name">Welcome {name}</div>
-      <div className="lastlogin">Last Login {lastLogin}</div>
+      <div className="name">Welcome, {name}</div>
+      <div className="lastlogin">Creation Date: {lastLogin}</div>
 
       <Outlet />
     </React.Fragment>
