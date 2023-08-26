@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { SaveTransaction } from "./TransactionsValidation";
 import { makeStyles } from "@material-ui/core/styles";

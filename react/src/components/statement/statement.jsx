@@ -3,14 +3,30 @@ import { Outlet } from "react-router-dom";
 import axios from "axios";
 
 function Statement() {
+  const [user, setUser] = useState([]);
   const [statements, setStatements] = useState([]);
 
   const currentUserID = sessionStorage.getItem("userId");
 
-  const fetchData = async () => {
+  const fetchUser = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/bank-api/statements/getStatement/${currentUserID}`);
+      const response = await axios.get(`http://localhost:8080/admin/getAccountDetailsByUserId/${currentUserID}`);
+      setUser(response.data[0]);
+      console.log(response.data[0]);
+      fetchData(response.data[0]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  const fetchData = async (user) => {
+    try {
+      console.log(user);
+      const response = await axios.get(`http://localhost:8080/bank-api/statements/getStatement/${user.accountId}`);
       setStatements(response.data);
     } catch (error) {
       console.error(error);

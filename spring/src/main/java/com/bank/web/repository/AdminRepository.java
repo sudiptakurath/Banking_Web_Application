@@ -11,9 +11,9 @@ import java.util.List;
 
 @Repository
 public interface AdminRepository extends JpaRepository<User, Integer> {
-    @Query(value = "SELECT * FROM users_tb WHERE user_type = 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM users_tb WHERE user_type = 2", nativeQuery = true)
     List<User> findUsersByUserType(@Param("userType") int userType);
 
-    @Query(value = "SELECT * FROM users_tb WHERE user_type = 0", nativeQuery = true)
+    @Query(value = "SELECT * FROM users_tb WHERE fk_account_id IS NULL AND user_type != 1", nativeQuery = true)
     List<User> findUsersByUserRequest(@Param("userType") int userType);
 }
